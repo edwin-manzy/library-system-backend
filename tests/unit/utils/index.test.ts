@@ -1,4 +1,4 @@
-import { removeCircularDependency } from 'src/utils'
+import { removeCircularDependency } from 'src/utils/helpers'
 
 describe ('Utils', () => {
   describe('#removeCircularDependency', () => {

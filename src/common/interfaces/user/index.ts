@@ -10,3 +10,8 @@ export interface User {
   email: string;
   password: UserPassword;
 }
+
+export interface UserSignInRequestBody {
+  email: string;
+  password: string;
+}
