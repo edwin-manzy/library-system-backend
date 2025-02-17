@@ -1,5 +1,5 @@
 export const removeCircularDependency =
-  <T extends object = object,>(obj: T, seen: Map<any, boolean> = new Map<any, boolean>()): Partial<T> => {
+  <T = object,>(obj: T, seen: Map<any, boolean> = new Map<any, boolean>()): Partial<T> => {
   if (typeof obj !== 'object' || obj === null) {
     return obj;
   }
@@ -15,7 +15,7 @@ export const removeCircularDependency =
       delete obj[key as keyof T];
       return;
     }
-    
+
     seen.set(value, true);
     removeCircularDependency(value, seen)
   })
