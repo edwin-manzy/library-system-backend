@@ -9,27 +9,36 @@ config();
 const app = express();
 app.use(express.json());
 
-const dbName = process.env['DATABASE_NAME'];
-const dbPort = process.env['DATABASE_PORT'];
-const dbHost = process.env['DATABASE_HOST'];
+const {
+  DATABASE_NAME,
+  DATABASE_PORT,
+  DATABASE_HOST,
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  SERVER_PORT,
+  SERVER_HOST
+} = process.env;
 
-const svPort = Number(process.env['SERVER_PORT']) ?? 8080;
-const svHost = process.env['SERVER_HOST'] ?? 'localhost';
 
 const main = async (): Promise<void> => {
   try {
-    await mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`);
+    let connectionString = 'mongodb://';
+    if (DATABASE_USER && DATABASE_PASSWORD) {
+      connectionString += `${DATABASE_USER}:${DATABASE_PASSWORD}@`;
+    }
+
+    await mongoose.connect(`${connectionString}${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`);
     app.use( libraryMainRouter );
   } catch (e) {
     console.log(e);
     app.use(serverOfflineRouter);
   }
 
-  app.listen(svPort, svHost, (error) => {
+  app.listen(Number(SERVER_PORT), SERVER_HOST ?? 'localhost', (error) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`Server is running on http://${svHost}:${svPort}`)
+      console.log(`Server is running on http://${SERVER_HOST}:${SERVER_PORT}`)
     }
   })
 }
