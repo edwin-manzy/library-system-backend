@@ -1,6 +1,15 @@
 import { Response, Request } from "express"
+import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config'
+import { User } from "./user";
 
 export type ApiResponse = Response;
 
-export type ApiRequest<Params = any, ResBody = any, ReqBody = any, ReqQuery = any> =
-  Request<Params, ResBody, ReqBody, ReqQuery>;
+export interface  ApiRequest<Params = any, ResBody = any, ReqBody = any, ReqQuery = any> 
+  extends Request<Params, ResBody, ReqBody, ReqQuery> {
+    envVariables: ConfigEnvVariables,
+    user?: User
+  }
+
+export type ConfigEnvVarName = keyof typeof CONFIG_ENV_VAR_NAMES;
+
+export type ConfigEnvVariables = Record<ConfigEnvVarName, string>
