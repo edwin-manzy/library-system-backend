@@ -1,7 +1,7 @@
-import { NextFunction } from "express";
-import { CONFIG_ENV_VAR_NAMES } from "src/common/const/config";
-import { ApiRequest, ApiResponse, ConfigEnvVariables, ConfigEnvVarName } from "src/common/interfaces";
-import { getEnvVariable } from "src/utils/helpers/config";
+import { NextFunction } from 'express';
+import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config';
+import { ApiRequest, ApiResponse, ConfigEnvVariables, ConfigEnvVarName } from 'src/common/interfaces';
+import { getEnvVariable } from 'src/utils/helpers/config';
 
 export const populateEnvVariables = (req: ApiRequest, res: ApiResponse, next: NextFunction): void => {
   const envVariables = Object.fromEntries(
@@ -10,4 +10,4 @@ export const populateEnvVariables = (req: ApiRequest, res: ApiResponse, next: Ne
 
   req.envVariables = envVariables;
   next();
-}
+};

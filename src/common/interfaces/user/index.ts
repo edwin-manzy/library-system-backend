@@ -1,4 +1,4 @@
-import { USER_TYPES } from "src/common/const/user";
+import { USER_TYPES } from 'src/common/const/user';
 
 
 export type UserType = typeof USER_TYPES[keyof (typeof USER_TYPES)]

@@ -6,4 +6,4 @@ export const libraryMainRouter = Router();
 const apiRouter = Router();
 apiRouter.use('/user', userRouter);
 
-libraryMainRouter.use('/api', apiRouter)
+libraryMainRouter.use('/api', apiRouter);

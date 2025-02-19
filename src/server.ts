@@ -49,15 +49,15 @@ const main = async (): Promise<void> => {
     app.use(serverOfflineRouter);
   }
 
-  app.use(errorHandlerMiddleWare)
+  app.use(errorHandlerMiddleWare);
 
-  app.listen(Number(SERVER_PORT), SERVER_HOST ?? 'localhost', (error) => {
+  app.listen(Number(SERVER_PORT), SERVER_HOST, (error) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`Server is running on http://${SERVER_HOST}:${SERVER_PORT}`)
+      console.log(`Server is running on http://${SERVER_HOST}:${SERVER_PORT}`);
     }
-  })
-}
+  });
+};
 
-main();
+void main();

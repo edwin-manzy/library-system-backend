@@ -1,10 +1,10 @@
-import { Response, Request } from "express"
-import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config'
-import { User } from "./user";
+import { Response, Request } from 'express';
+import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config';
+import { User } from './user';
 
 export type ApiResponse = Response;
 
-export interface  ApiRequest<Params = any, ResBody = any, ReqBody = any, ReqQuery = any> 
+export interface  ApiRequest<Params = object, ResBody = object, ReqBody = object, ReqQuery = object>
   extends Request<Params, ResBody, ReqBody, ReqQuery> {
     envVariables: ConfigEnvVariables,
     user?: User

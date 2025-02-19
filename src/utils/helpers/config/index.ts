@@ -7,12 +7,12 @@ export const getEnvVariable = (key: ConfigEnvVarName): string => {
   }
 
   return process.env[key];
-}
+};
 
 export const getEnvVariables = (...keys: ConfigEnvVarName[]): string[] => {
   return keys.map((key: ConfigEnvVarName) => getEnvVariable(key));
-}
+};
 
 export const validateEnvVariables = (): void => {
-  getEnvVariables(...Object.values(CONFIG_ENV_VAR_NAMES))
-}
+  getEnvVariables(...Object.values(CONFIG_ENV_VAR_NAMES));
+};

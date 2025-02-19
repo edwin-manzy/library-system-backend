@@ -1,8 +1,7 @@
-
 type MirrorArray<T extends readonly string[]> = {
   [K in T[number]]: K;
 };
 
-function createMirror<T extends readonly string[]>(arr: T): MirrorArray<T> {
+export const createMirror = <T extends readonly string[]>(arr: T): MirrorArray<T> => {
   return Object.fromEntries(arr.map(key => [key, key])) as MirrorArray<T>;
-}
+};
