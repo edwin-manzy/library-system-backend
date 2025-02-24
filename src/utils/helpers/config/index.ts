@@ -2,7 +2,7 @@ import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config';
 import { ConfigEnvVarName } from 'src/common/interfaces';
 
 export const getEnvVariable = (key: ConfigEnvVarName): string => {
-  if (!process.env[key]) {
+  if (process.env[key] === undefined) {
     throw new Error(`The system is missing key ${key}`);
   }
 

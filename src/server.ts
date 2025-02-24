@@ -1,17 +1,12 @@
-import express from 'express';
 import mongoose from 'mongoose';
 import { config } from 'dotenv';
-import { libraryMainRouter } from './routes';
-import { serverOfflineRouter } from './routes/server/offline';
+
+import { app } from './app';
 import { getEnvVariables, validateEnvVariables } from './utils/helpers/config';
 import { CONFIG_ENV_VAR_NAMES } from './common/const/config';
-import { populateEnvVariables } from './middleware/config';
-import { errorHandlerMiddleWare } from './middleware/error';
+import * as FeatureFlagService from './services/feature-flags';
 
 config();
-
-const app = express();
-app.use(express.json());
 
 const [
   DATABASE_NAME,
@@ -33,7 +28,6 @@ const [
 
 const main = async (): Promise<void> => {
   try {
-
     validateEnvVariables();
 
     let connectionString = 'mongodb://';
@@ -42,14 +36,11 @@ const main = async (): Promise<void> => {
     }
 
     await mongoose.connect(`${connectionString}${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`);
-    app.use(populateEnvVariables);
-    app.use(libraryMainRouter);
+    await FeatureFlagService.migrateFeatures();
+
   } catch (e) {
     console.log(e);
-    app.use(serverOfflineRouter);
   }
-
-  app.use(errorHandlerMiddleWare);
 
   app.listen(Number(SERVER_PORT), SERVER_HOST, (error) => {
     if (error) {
