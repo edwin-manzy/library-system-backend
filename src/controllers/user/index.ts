@@ -13,7 +13,6 @@ export const signIn = (req: ApiRequest<void, UserSignInResponseBody, UserSignInR
   }));
 };
 
-export const whoami = (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>, res: ApiResponse): void => {
-  validateRequestProps<UserSignInRequestBody>(req.body, 'email', 'password');
+export const whoami = (req: ApiRequest, res: ApiResponse): void => {
   res.send('unknown');
 };
