@@ -1,5 +1,5 @@
 import express from 'express';
-
+import cors from 'cors';
 import { populateEnvVariables } from './middleware/config';
 import { libraryMainRouter } from './routes';
 import { errorHandlerMiddleWare } from './middleware/error';
@@ -7,6 +7,13 @@ import { populateFeatures } from './middleware/feature-flag';
 import { OfflineHandler } from './middleware/server';
 
 export const app = express();
+
+app.use(cors({
+  origin: ['https://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
 
 app.use(express.json());
 app.use(populateEnvVariables);

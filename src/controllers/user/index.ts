@@ -14,7 +14,6 @@ export const signIn = (req: ApiRequest<void, UserSignInResponseBody, UserSignInR
 };
 
 export const whoami = (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>, res: ApiResponse): void => {
-  console.log('controller');
   validateRequestProps<UserSignInRequestBody>(req.body, 'email', 'password');
   res.send('unknown');
 };
