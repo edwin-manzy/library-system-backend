@@ -5,7 +5,7 @@ import eslintImport from 'eslint-plugin-import'
 import filesRulesMatch from 'eslint-plugin-filename-rules'
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'build'] },
   {
     extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked],
     files: ['src/**/*.{ts,tsx}'],
