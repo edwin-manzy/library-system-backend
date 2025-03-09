@@ -8,13 +8,19 @@ export interface UserPassword {
   expires: boolean;
   expiresOn?: Date;
   value: string;
+  active: boolean;
 }
 
 export interface User {
   name: string;
   email: string;
-  password: UserPassword;
+  password: UserPassword[];
+  createdAt: Date;
+  type: UserType;
 }
+
+export type UserDocument = User & Document;
+export type UserPasswordDocument = UserPassword & Document;
 
 export interface UserSignInRequestBody {
   email: string;

@@ -26,7 +26,3 @@ export const validateRequestProps = <T extends Record<PropertyKey, any> = object
     throw new BadRequestError('The request has missing or invalid data.');
   }
 };
-
-export const signToken = <T extends object>(data: T): T => {
-  return data;
-};
