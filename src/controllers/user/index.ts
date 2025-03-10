@@ -1,15 +1,23 @@
 import { ApiRequest, ApiResponse } from 'src/common/interfaces';
 import { UserSignInRequestBody, UserSignInResponseBody } from 'src/common/interfaces/user';
 import { buildSuccessfulJsonResponse, validateRequestProps } from 'src/utils/helpers';
+import * as UserService from 'src/services/user';
 import { TIME } from 'src/common/const';
+import { signToken } from 'src/utils/helpers/common';
 
-export const signIn = (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>, res: ApiResponse): void => {
+export const signIn = async (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>, res: ApiResponse): Promise<void> => {
   validateRequestProps<UserSignInRequestBody>(req.body, 'email', 'password');
-  res.cookie('user_info', '', {
+
+  const user = await UserService.signin(req.body.email, req.body.password);
+  const { _id : id, name, type } = user;
+  const token = signToken({ id });
+
+  res.cookie('user_info', token, {
     httpOnly: true,
     maxAge: TIME.MILL_DAY,
   }).send(buildSuccessfulJsonResponse({
-    name: 'edwindijas@gmail.com'
+    name,
+    type,
   }));
 };
 

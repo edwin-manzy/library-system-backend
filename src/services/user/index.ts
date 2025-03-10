@@ -1,5 +1,5 @@
 import { User, UserDocument, UserPassword } from 'src/common/interfaces/user';
-import { Query } from 'mongoose';
+import { Query, Types } from 'mongoose';
 import { userModel } from 'src/models/user';
 import bcrypt from 'bcrypt';
 import { UserUnAuthorizedError } from 'src/utils/errors/user';
@@ -19,11 +19,15 @@ export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password
   }
 };
 
-export const getUserByEmail = (email: string): Query<User | null, User> => {
+export const getUserByEmail = (email: string): Query<UserDocument | null, UserDocument> => {
   return userModel.findOne({ email });
 };
 
-export const signin = async (email: string, password: string): Promise<User> => {
+export const getUserById = (id: Types.ObjectId): Query<UserDocument | null, UserDocument> => {
+  return userModel.findById(id);
+};
+
+export const signin = async (email: string, password: string): Promise<UserDocument> => {
   const user = await getUserByEmail(email);
 
   if (!user) {

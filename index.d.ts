@@ -6,7 +6,10 @@ declare global {
     interface Request {
       user?: User,
       envVariables: ConfigEnvVariables,
-      features: FeatureFlagMap
+      features: FeatureFlagMap,
+      cookies?: {
+        [key: string]: string
+      }
     }
   }
 

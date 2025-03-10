@@ -5,23 +5,36 @@ import fs from 'fs';
 import path from 'path';
 
 
-export const signToken = (function () {
+const getPrivateKey = (function (){
   let privateKey: string = '';
-  return (data: object | string): string => {
+  return (): string => {
 
     if (!privateKey) {
       const privateKeyFile = getEnvVariable('PRIVATE_KEY_NAME');
       privateKey = fs.readFileSync(path.join('src/private/', privateKeyFile), 'utf8');
     }
-
-    try{
-      return jwt.sign(data, privateKey, { algorithm: 'RS256' });
-    } catch (err) {
-      console.error(err);
-      throw new Error('Error signing token');
-    }
+    return privateKey;
   };
 }());
+
+export const signToken = (data: object | string): string => {
+  try{
+    return jwt.sign(data, getPrivateKey(), { algorithm: 'RS256' });
+  } catch (err) {
+    console.error(err);
+    throw new Error('Error signing token');
+  }
+};
+
+
+export const decodeToken = (token: string): unknown => {
+  try {
+    return jwt.verify(token, getPrivateKey());
+  } catch (err) {
+    console.error(err);
+    throw new Error('Error decoding token');
+  }
+};
 
 
 type MirrorArray<T extends readonly string[]> = {

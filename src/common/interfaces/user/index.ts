@@ -1,5 +1,5 @@
 import { USER_TYPES } from 'src/common/const/user';
-
+import { Document } from 'mongoose';
 
 export type UserType = typeof USER_TYPES[keyof (typeof USER_TYPES)]
 

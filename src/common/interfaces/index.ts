@@ -17,3 +17,7 @@ export interface  ApiRequest<Params = object, ResBody = object, ReqBody = object
     user?: User;
     features: FeatureFlagMap;
   }
+
+export interface Cookies {
+  [key: string]: string
+}
