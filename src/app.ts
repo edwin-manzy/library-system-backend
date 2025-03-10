@@ -17,7 +17,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cookieParser());
 app.use(express.json());
 app.use(populateEnvVariables);
