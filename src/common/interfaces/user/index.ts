@@ -22,6 +22,10 @@ export interface User {
 export type UserDocument = User & Document;
 export type UserPasswordDocument = UserPassword & Document;
 
+export interface SafeUser extends Omit<User, 'password'| 'createdAt' | 'email'> {
+  id: string;
+}
+
 export interface UserSignInRequestBody {
   email: string;
   password: string;

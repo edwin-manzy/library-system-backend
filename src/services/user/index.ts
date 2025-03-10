@@ -1,4 +1,4 @@
-import { User, UserDocument, UserPassword } from 'src/common/interfaces/user';
+import { SafeUser, User, UserDocument, UserPassword } from 'src/common/interfaces/user';
 import { Query, Types } from 'mongoose';
 import { userModel } from 'src/models/user';
 import bcrypt from 'bcrypt';
@@ -20,11 +20,11 @@ export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password
 };
 
 export const getUserByEmail = (email: string): Query<UserDocument | null, UserDocument> => {
-  return userModel.findOne({ email });
+  return userModel.findOne({ email }).lean();
 };
 
 export const getUserById = (id: Types.ObjectId): Query<UserDocument | null, UserDocument> => {
-  return userModel.findById(id);
+  return userModel.findById(id).lean();
 };
 
 export const signin = async (email: string, password: string): Promise<UserDocument> => {
@@ -38,6 +38,14 @@ export const signin = async (email: string, password: string): Promise<UserDocum
 
   if(!encryptedPassword || !bcrypt.compareSync(password, encryptedPassword.value)) {
     throw new UserUnAuthorizedError('The email or password is incorrect.');
+  }
+
+  return user;
+};
+
+export const whoAmi = (user?: SafeUser): SafeUser | undefined => {
+  if (!user) {
+    return;
   }
 
   return user;

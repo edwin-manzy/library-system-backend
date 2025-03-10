@@ -22,5 +22,8 @@ export const signIn = async (req: ApiRequest<void, UserSignInResponseBody, UserS
 };
 
 export const whoami = (req: ApiRequest, res: ApiResponse): void => {
-  res.send('unknown');
+  const user = UserService.whoAmi(req.user);
+  res.send(buildSuccessfulJsonResponse({
+    user
+  }));
 };

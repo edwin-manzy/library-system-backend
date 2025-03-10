@@ -1,10 +1,10 @@
 import { ConfigEnvVariables, FeatureFlagMap } from 'src/common/interfaces';
-import { User } from 'src/common/interfaces/user';
+import { SafeUser } from 'src/common/interfaces/user';
 
 declare global {
   namespace Express {
     interface Request {
-      user?: User,
+      user?: SafeUser;
       envVariables: ConfigEnvVariables,
       features: FeatureFlagMap,
       cookies?: {
