@@ -4,15 +4,12 @@ import { userModel } from 'src/models/user';
 import bcrypt from 'bcrypt';
 import { UserUnAuthorizedError } from 'src/utils/errors/user';
 
-export const createUser = (user: Omit<User, 'password'>, password: string): Promise<UserDocument> => {
+export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password: string): Promise<UserDocument> => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    const newPassword: UserPassword = {
+    const newPassword: Pick<UserPassword, 'value'> = {
       value: hashedPassword,
-      date: new Date(),
-      expires: false,
-      active: true,
     };
 
     return userModel.create({ ...user, password: [newPassword] });

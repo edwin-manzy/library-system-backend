@@ -9,18 +9,18 @@ const PasswordSchema = new mongoose.Schema<UserPasswordDocument>({
   },
   date: {
     type: Date,
-    required: true,
+    default: Date.now,
   },
   expires: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   expiresOn: {
     type: Date,
   },
   active: {
     type: Boolean,
-    required: true,
+    default: true,
   }
 });
 
@@ -40,10 +40,8 @@ const UserSchema = new mongoose.Schema<UserDocument>({
     enum: Object.values(USER_TYPES),
   },
   password: [PasswordSchema],
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
+}, {
+  timestamps: true,
 });
 
 export const userModel = mongoose.model('user', UserSchema);
