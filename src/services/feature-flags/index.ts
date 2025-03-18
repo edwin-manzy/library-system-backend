@@ -8,7 +8,8 @@ export const getFeatureFlags = (): Query<FeatureFlag[], FeatureFlag> => {
   return featureFlagModel.find().lean();
 };
 
-export const addFeatureFlags = (feature: Omit<FeatureFlag, keyof Document>[]): Promise<FeatureFlag[]> => {
+export const addFeatureFlags = (feature: Omit<FeatureFlag,
+  keyof Document>[]): Promise<FeatureFlag[]> => {
   return featureFlagModel.insertMany(feature);
 };
 

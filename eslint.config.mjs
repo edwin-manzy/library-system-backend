@@ -44,7 +44,12 @@ export default tseslint.config(
       "no-trailing-spaces": ["error", { "ignoreComments": true }],
       "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 0, "maxEOF": 0 }],
       "indent": ["error", 2],
-      "no-console": "error"
+      "no-console": "error",
+      "max-len": ["error", {
+        "ignoreComments": true,
+        "code": 100,
+        "tabWidth": 2,
+      }]
     },
   },
 )

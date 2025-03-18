@@ -3,7 +3,8 @@ import { ApiRequest, ApiResponse } from 'src/common/interfaces';
 import { BaseError } from 'src/utils/errors/error';
 import { buildSuccessfulJsonResponse } from 'src/utils/helpers';
 
-export const errorHandlerMiddleWare = (err: BaseError, req: ApiRequest, res: ApiResponse, next: NextFunction): void => {
+export const errorHandlerMiddleWare = (err: BaseError, req: ApiRequest,
+  res: ApiResponse, next: NextFunction): void => {
   if (res.headersSent) {
     next(err); return;
   }

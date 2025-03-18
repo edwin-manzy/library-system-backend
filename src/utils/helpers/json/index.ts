@@ -1,5 +1,6 @@
 export const removeCircularDependency =
-  <T extends PropertyKey | object = object,>(obj: T, seen: Map<PropertyKey | object, boolean> = new Map<PropertyKey | object, boolean>()): Partial<T> => {
+  <T extends PropertyKey | object = object,>(obj: T, seen: Map<PropertyKey | object, boolean> =
+  new Map<PropertyKey | object, boolean>()): Partial<T> => {
     if (!obj || typeof obj !== 'object') {
       return obj;
     }

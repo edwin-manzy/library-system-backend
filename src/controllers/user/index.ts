@@ -5,7 +5,8 @@ import * as UserService from 'src/services/user';
 import { TIME } from 'src/common/const';
 import { signToken } from 'src/utils/helpers/common';
 
-export const signIn = async (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>, res: ApiResponse): Promise<void> => {
+export const signIn = async (req: ApiRequest<void, UserSignInResponseBody, UserSignInRequestBody>,
+  res: ApiResponse): Promise<void> => {
   validateRequestProps<UserSignInRequestBody>(req.body, 'email', 'password');
 
   const user = await UserService.signin(req.body.email, req.body.password);

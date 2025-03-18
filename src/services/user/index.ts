@@ -3,8 +3,10 @@ import { Query, Types } from 'mongoose';
 import { userModel } from 'src/models/user';
 import bcrypt from 'bcrypt';
 import { UserUnAuthorizedError } from 'src/utils/errors/user';
+import { USER_LOGIN_ERRORS } from 'src/common/const/user';
 
-export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password: string): Promise<UserDocument> => {
+export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password: string):
+  Promise<UserDocument> => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
@@ -31,7 +33,8 @@ export const signin = async (email: string, password: string): Promise<UserDocum
   const user = await getUserByEmail(email);
 
   if (!user) {
-    throw new UserUnAuthorizedError('The email or password is incorrect.');
+    throw new UserUnAuthorizedError(
+      USER_LOGIN_ERRORS.EMAIL_PASSWORD_INCORRECT, 'The email or password is incorrect.');
   }
 
   const encryptedPassword = user.password.find(({ active }) => active);

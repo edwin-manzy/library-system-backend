@@ -1,7 +1,7 @@
 import { BaseError } from 'src/utils/errors/error';
 
 export class UserUnAuthorizedError extends BaseError {
-  constructor(message: string = 'Un Authorized request') {
-    super('UnAuthorized', message, 401);
+  constructor(title = 'UnAuthorized', message = 'Un Authorized request') {
+    super(title, message, 401);
   }
 }

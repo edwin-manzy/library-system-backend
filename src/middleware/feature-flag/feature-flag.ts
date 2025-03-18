@@ -4,7 +4,9 @@ import { ApiRequest, ApiResponse, FeatureFlagMap } from 'src/common/interfaces';
 import { FeatureFlag } from 'src/common/interfaces/feature-flag/feature-flag';
 import * as FeatureFlagsService from 'src/services/feature-flags';
 
-export const populateFeatures = async (req: ApiRequest, res: ApiResponse, next: NextFunction): Promise<void> => {
+export const populateFeatures = async (req: ApiRequest,
+  res: ApiResponse, next: NextFunction): Promise<void> =>
+{
   const featureFlags = await FeatureFlagsService.getFeatureFlags();
   const featureMap = Object.fromEntries(featureFlags.map((feature) => ([feature.name, feature])));
 

@@ -16,4 +16,5 @@ const featureFlagSchema = new Schema<FeatureFlag>({
   }
 });
 
-export const featureFlagModel: Model<FeatureFlag> = mongoose.model('feature-flag', featureFlagSchema);
+export const featureFlagModel: Model<FeatureFlag> =
+  mongoose.model('feature-flag', featureFlagSchema);
