@@ -20,8 +20,8 @@ const getPrivateKey = (function (){
 export const signToken = (data: object | string): string => {
   try{
     return jwt.sign(data, getPrivateKey(), { algorithm: 'RS256' });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
-    console.error(err);
     throw new Error('Error signing token');
   }
 };
@@ -30,8 +30,8 @@ export const signToken = (data: object | string): string => {
 export const decodeToken = (token: string): unknown => {
   try {
     return jwt.verify(token, getPrivateKey());
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
-    console.error(err);
     throw new Error('Error decoding token');
   }
 };

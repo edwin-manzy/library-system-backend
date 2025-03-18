@@ -40,10 +40,11 @@ export default tseslint.config(
       "import/first": "error",
       "import/no-duplicates": "error",
       "import/newline-after-import": "error",
-      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/explicit-function-return-type":  ["error", { allowExpressions: true }],
       "no-trailing-spaces": ["error", { "ignoreComments": true }],
       "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 0, "maxEOF": 0 }],
-      "indent": ["error", 2]
+      "indent": ["error", 2],
+      "no-console": "error"
     },
   },
 )

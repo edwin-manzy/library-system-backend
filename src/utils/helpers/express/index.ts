@@ -1,9 +1,9 @@
 import { BadRequestError } from 'src/utils/errors/request/bad-request';
 import { removeCircularDependency } from 'src/utils/helpers/json';
 
-export const buildSuccessfulJsonResponse = <T extends object = object,>(data: T): {data: Partial<T>} => {
+export const buildSuccessfulJsonResponse = <T extends object = object,>(data: T, error = false): {data: Partial<T>, status: 'error' | 'success'} => {
   removeCircularDependency(data);
-  return { data };
+  return { data, status: error ? 'error': 'success' };
 };
 
 /**

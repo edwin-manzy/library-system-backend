@@ -13,8 +13,8 @@ export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password
     };
 
     return userModel.create({ ...user, password: [newPassword] });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    console.error(error);
     throw new Error('Error creating user');
   }
 };

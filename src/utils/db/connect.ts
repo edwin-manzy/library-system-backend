@@ -27,6 +27,7 @@ export const connectToMongoose = async (): Promise<boolean> => {
     await mongoose.connect(`${connectionString}${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`);
     return true;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     return false;
   }
