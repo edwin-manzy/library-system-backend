@@ -43,8 +43,34 @@ export default tseslint.config(
       "@typescript-eslint/explicit-function-return-type":  ["error", { allowExpressions: true }],
       "no-trailing-spaces": ["error", { "ignoreComments": true }],
       "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 0, "maxEOF": 0 }],
+      "import/no-unused-modules": "error",
       "indent": ["error", 2],
       "no-console": "error",
+      "import/no-commonjs": "error",
+      "import/no-relative-packages": "error",
+      "import/no-useless-path-segments": "error",
+      "import/order": ["error", {
+        "alphabetize": { "order": "asc" },
+        "groups": ["external", "internal", "index", "type"],
+        "pathGroups": [
+          {
+            "pattern": "dirA/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "dirB/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "dirC/**",
+            "group": "internal"
+          }
+        ],
+        "newlines-between": "always-and-inside-groups",
+        "pathGroupsExcludedImportTypes": [],
+      }],
       "max-len": ["error", {
         "ignoreComments": true,
         "code": 100,

@@ -1,9 +1,9 @@
-import { SafeUser, User, UserDocument, UserPassword } from 'src/common/interfaces/user';
-import { Query, Types } from 'mongoose';
-import { userModel } from 'src/models/user';
 import bcrypt from 'bcrypt';
-import { UserUnAuthorizedError } from 'src/utils/errors/user';
+import { Query, Types } from 'mongoose';
 import { USER_LOGIN_ERRORS } from 'src/common/const/user';
+import { SafeUser, User, UserDocument, UserPassword } from 'src/common/interfaces/user';
+import { userModel } from 'src/models/user';
+import { UserUnAuthorizedError } from 'src/utils/errors/user';
 
 export const createUser = (user: Pick<User, 'email' | 'name' | 'type'>, password: string):
   Promise<UserDocument> => {

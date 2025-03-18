@@ -1,6 +1,7 @@
+import jwt from 'jsonwebtoken';
+
 import { getEnvVariable } from '../config';
 
-import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
 

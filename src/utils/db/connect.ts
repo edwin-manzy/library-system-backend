@@ -1,6 +1,7 @@
-import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config';
-import { getEnvVariables } from '../helpers/config';
 import mongoose from 'mongoose';
+import { CONFIG_ENV_VAR_NAMES } from 'src/common/const/config';
+
+import { getEnvVariables } from '../helpers/config';
 
 export const connectToMongoose = async (): Promise<boolean> => {
   const [

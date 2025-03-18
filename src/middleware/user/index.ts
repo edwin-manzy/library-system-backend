@@ -1,9 +1,9 @@
 import { NextFunction } from 'express';
+import { Types } from 'mongoose';
 import { ApiRequest, ApiResponse } from 'src/common/interfaces';
+import { SafeUser } from 'src/common/interfaces/user';
 import * as UserService from 'src/services/user';
 import { decodeToken } from 'src/utils/helpers/common';
-import { Types } from 'mongoose';
-import { SafeUser } from 'src/common/interfaces/user';
 
 export const userAuthMiddleWare = async (req: ApiRequest,
   res: ApiResponse, next: NextFunction): Promise<void> => {

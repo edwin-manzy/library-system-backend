@@ -1,8 +1,8 @@
 import { NextFunction } from 'express';
-import { ApiRequest, ApiResponse } from 'src/common/interfaces';
 
 import mongoose from 'mongoose';
 import { FEATURE_FLAG_NAMES } from 'src/common/const/feature-flag';
+import { ApiRequest, ApiResponse } from 'src/common/interfaces';
 
 export const OfflineHandler = (req: ApiRequest, res: ApiResponse, next: NextFunction): void => {
   if (mongoose.connection.readyState !== mongoose.ConnectionStates.connected ||

@@ -1,12 +1,13 @@
-import express from 'express';
-import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import express from 'express';
+
 import { populateEnvVariables } from './middleware/config';
-import { libraryMainRouter } from './routes';
 import { errorHandlerMiddleWare } from './middleware/error';
 import { populateFeatures } from './middleware/feature-flag';
 import { OfflineHandler } from './middleware/server';
 import { userAuthMiddleWare } from './middleware/user';
+import { libraryMainRouter } from './routes';
 
 export const app = express();
 

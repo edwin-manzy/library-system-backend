@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { userRouter } from './user/index';
+
 import { featureFlagsRouter } from './feature-flags';
+import { userRouter } from './user/index';
 
 export const libraryMainRouter = Router();
 

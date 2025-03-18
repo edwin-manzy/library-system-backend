@@ -1,10 +1,10 @@
 import { config } from 'dotenv';
 
 import { app } from './app';
-import { getEnvVariables, validateEnvVariables } from './utils/helpers/config';
 import { CONFIG_ENV_VAR_NAMES } from './common/const/config';
 import * as FeatureFlagService from './services/feature-flags';
 import * as DatabaseUtils from './utils/db/connect';
+import { getEnvVariables, validateEnvVariables } from './utils/helpers/config';
 
 config();
 
