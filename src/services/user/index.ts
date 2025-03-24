@@ -40,7 +40,8 @@ export const signin = async (email: string, password: string): Promise<UserDocum
   const encryptedPassword = user.password.find(({ active }) => active);
 
   if(!encryptedPassword || !bcrypt.compareSync(password, encryptedPassword.value)) {
-    throw new UserUnAuthorizedError('The email or password is incorrect.');
+    throw new UserUnAuthorizedError( USER_LOGIN_ERRORS.EMAIL_PASSWORD_INCORRECT,
+      'The email or password is incorrect.');
   }
 
   return user;

@@ -7,5 +7,7 @@ export const USER_TYPES = {
 
 
 export const USER_LOGIN_ERRORS = createMirror([
-  'EMAIL_PASSWORD_INCORRECT'
+  'EMAIL_PASSWORD_INCORRECT',
+  'EMAIL_INVALID',
+  'PASSWORD_INVALID'
 ] as const);
